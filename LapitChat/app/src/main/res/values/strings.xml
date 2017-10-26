@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Lapit Chat</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_pagina_de_viagens">PaginaDeViagens</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="cadastrar_agora">Cadastrar Agora!</string>
+    <string name="bem_vindo_a_p_gina_de_chat">Bem-vindo a página de Chat</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="digite_sua_senha_novamente">Digite sua senha novamente</string>
+    <string name="main_chat">Main Chat</string>
+    <string name="log_out">Log out</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="display_name">Display Name</string>
+    <string name="lapit_status_message">Hey, eu estou usando o Lapit Chat</string>
+</resources>

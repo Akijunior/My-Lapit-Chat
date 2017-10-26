@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    tools:context="com.example.ljuni.lapitchat.PaginasDoUsuario.ProfileActivity">
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/profile_displayName"
+        android:src="@drawable/new_profile_image" />
+
+    <TextView
+        android:id="@+id/profile_displayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:text="Display Name"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/profile_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_displayName"
+        android:layout_centerHorizontal="true"
+        android:text="Status atual"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/profile_totalFriends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="Total de amigos"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="17sp"
+        android:layout_below="@+id/profile_status"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/profile_send_req_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@color/corAcentuadaChat"
+        android:padding="3dp"
+        android:text="Solicitar amizade"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/profile_totalFriends"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:background="@color/corAcentuadaChat"
+        android:padding="3dp"
+        android:text="Desfazer Amizade"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/profile_send_req_btn"
+        android:layout_alignStart="@+id/profile_send_req_btn" />
+</RelativeLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ljuni.lapitchat.PaginasDoUsuario.StatusActivity">
+
+    <include layout="@layout/app_bar_layout" android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/status_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/status_bar"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Seu Status" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/status_save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/status_input"
+        android:layout_below="@+id/status_input"
+        android:layout_marginTop="36dp"
+        android:background="@color/corAcentuadaChat"
+        android:text="Salvar"
+        android:textColor="@color/cardview_light_background" />
+
+</RelativeLayout>

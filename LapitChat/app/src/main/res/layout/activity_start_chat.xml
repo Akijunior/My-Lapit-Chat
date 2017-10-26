@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/corPrimariaChat"
+    tools:context="com.example.ljuni.lapitchat.Paginas.StartChatActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/bem_vindo_a_p_gina_de_chat"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/start_reg_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="92dp"
+        android:backgroundTint="@color/cardview_light_background"
+        android:text="@string/cadastrar_agora"
+        android:textColor="@color/corPrimariaChat" />
+
+    <Button
+        android:id="@+id/btn_ir_a_pagina_de_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:background="@color/corAcentuadaChat"
+        android:text="Já tenho uma conta"
+        android:textColor="@color/cardview_light_background" />
+
+</RelativeLayout>
