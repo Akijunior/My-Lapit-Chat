@@ -25,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -108,6 +110,7 @@ public class SettingsActivity extends AppCompatActivity {
         String uid_do_usuario = mAtualUsuario.getUid();
 
         mUsuarioDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(uid_do_usuario);
+        mUsuarioDatabase.keepSynced(true);
 
         mUsuarioDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -115,7 +118,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                // Toast.makeText(SettingsActivity.this, dataSnapshot.toString(), Toast.LENGTH_LONG).show();
                 String nome = dataSnapshot.child("name").getValue().toString();
-                String image = dataSnapshot.child("image").getValue().toString();
+                final String image = dataSnapshot.child("image").getValue().toString();
                 String status = dataSnapshot.child("status").getValue().toString();
                 String thumb_image = dataSnapshot.child("thumb_image").getValue().toString();
 
@@ -123,8 +126,20 @@ public class SettingsActivity extends AppCompatActivity {
                 mStatus.setText(status);
 
                 if (!image.equals("default")) {
-                    Picasso.with(SettingsActivity.this).load(image)
-                            .placeholder(R.drawable.new_profile_image).into(mDisplayImagem);
+                    Picasso.with(SettingsActivity.this).load(image).networkPolicy(NetworkPolicy.OFFLINE)
+                            .placeholder(R.drawable.new_profile_image).into(mDisplayImagem, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+
+                            Picasso.with(SettingsActivity.this).load(image).placeholder(R.drawable.new_profile_image)
+                                    .into(mDisplayImagem);
+                        }
+                    });
                 }
             }
 

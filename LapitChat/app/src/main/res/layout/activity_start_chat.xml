@@ -25,6 +25,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="92dp"
         android:backgroundTint="@color/cardview_light_background"
+        android:padding="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:text="@string/cadastrar_agora"
         android:textColor="@color/corPrimariaChat" />
 
@@ -36,6 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
         android:background="@color/corAcentuadaChat"
+        android:padding="8dp"
         android:text="Já tenho uma conta"
         android:textColor="@color/cardview_light_background" />
 

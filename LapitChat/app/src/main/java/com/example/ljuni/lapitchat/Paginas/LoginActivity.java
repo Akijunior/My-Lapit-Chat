@@ -14,9 +14,13 @@ import android.widget.Toast;
 
 import com.example.ljuni.lapitchat.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,12 +35,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressDialog mLoginProgress;
 
+    private DatabaseReference mUserDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
         mToolbar = (Toolbar) findViewById(R.id.login_toolbar);
         setSupportActionBar(mToolbar);
@@ -55,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = mLoginEmail.getEditText().getText().toString();
+                String email = mLoginEmail.getEditText().getText().toString() + "@gmail.com";
                 String senha = mLoginSenha.getEditText().getText().toString();
 
                 if (!TextUtils.isEmpty(email) || !TextUtils.isEmpty(senha)) {
@@ -81,10 +88,21 @@ public class LoginActivity extends AppCompatActivity {
 
                     mLoginProgress.dismiss();
 
-                    Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(mainIntent);
-                    finish();
+                    String current_user_id = mAuth.getCurrentUser().getUid();
+                    String devideTokenId = FirebaseInstanceId.getInstance().getToken();
+
+                    mUserDatabase.child(current_user_id).child("device_token").setValue(devideTokenId)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(mainIntent);
+                            finish();
+                        }
+                    });
+
                 }
 
                 else {
