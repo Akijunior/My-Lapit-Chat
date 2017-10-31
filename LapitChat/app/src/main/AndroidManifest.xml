@@ -13,6 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".Chat.LapitChat">
+
+        <service android:name=".Chat.FirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity android:name=".Paginas.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +40,12 @@
         <activity
             android:name=".PaginasDoUsuario.UsersActivity"
             android:parentActivityName=".Paginas.MainActivity" />
-        <activity android:name=".PaginasDoUsuario.ProfileActivity"></activity>
+        <activity android:name=".PaginasDoUsuario.ProfileActivity">
+            <intent-filter>
+                <action android:name="com.example.ljuni.lapitchat_TARGET_NOTIFICATION"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
