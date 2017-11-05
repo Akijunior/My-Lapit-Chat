@@ -82,11 +82,6 @@ public class ProfileActivity extends AppCompatActivity {
         mProgressDialog.setCanceledOnTouchOutside(false);
         mProgressDialog.show();
 
-        if(user_id.equals(mCurrent_user.getUid())){
-            mProfileSendReqBtn.setVisibility(View.INVISIBLE);
-            mProfileSendSeqBtn.setVisibility(View.INVISIBLE);
-        }
-
         mUsersDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -100,6 +95,14 @@ public class ProfileActivity extends AppCompatActivity {
 
                 Picasso.with(ProfileActivity.this).load(image).placeholder(R.drawable.new_profile_image).into(mProfileImage);
 
+                if (mCurrent_user.getUid().equals(user_id)) {
+
+                    mProfileSendSeqBtn.setEnabled(false);
+                    mProfileSendSeqBtn.setVisibility(View.INVISIBLE);
+
+                    mProfileSendReqBtn.setEnabled(false);
+                    mProfileSendReqBtn.setVisibility(View.INVISIBLE);
+                }
                 // ----------- FRIEND LIST / REQUEST FEATURE --------------
 
                 mFriendRequestDatabase.child(mCurrent_user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -114,6 +117,8 @@ public class ProfileActivity extends AppCompatActivity {
 
                                 mCurrent_state = "req_received";
                                 mProfileSendReqBtn.setText("Aceitar Solicitação");
+
+                                mProfileSendSeqBtn.setText("Rejeitar solicitação");
 
                                 mProfileSendSeqBtn.setVisibility(View.VISIBLE);
                                 mProfileSendSeqBtn.setEnabled(true);
@@ -184,7 +189,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if (mCurrent_state.equals("not_friends")) {
 
-                    DatabaseReference newNotificationRef = mRootRef.child("notifications");
+                    DatabaseReference newNotificationRef = mRootRef.child("notifications").child(user_id).push();
                     String newNotificationID = newNotificationRef.getKey();
 
                     HashMap<String, String> notificationsData = new HashMap<>();
@@ -193,7 +198,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     Map requestMap = new HashMap();
                     requestMap.put("Friend_req/" + mCurrent_user.getUid() + "/" + user_id + "/request_type", "sent");
-                    requestMap.put("Friend_req/" + user_id + "/" + mCurrent_user.getUid() + "/request_type", "receive");
+                    requestMap.put("Friend_req/" + user_id + "/" + mCurrent_user.getUid() + "/request_type", "received");
                     requestMap.put("notifications/" + user_id + "/" +newNotificationID, notificationsData);
 
                     mRootRef.updateChildren(requestMap, new DatabaseReference.CompletionListener() {
@@ -206,10 +211,13 @@ public class ProfileActivity extends AppCompatActivity {
                                         "There was some error in sending request.", Toast.LENGTH_SHORT);
                             }
 
-                            mProfileSendReqBtn.setEnabled(true);
+                            else {
 
-                            mCurrent_state = "req_sent";
-                            mProfileSendReqBtn.setText("Cancel Friend Request");
+                                mCurrent_state = "req_sent";
+                                mProfileSendReqBtn.setText("Cancelar Solicitação");
+                            }
+
+                            mProfileSendReqBtn.setEnabled(true);
                         }
                     });
 
@@ -262,7 +270,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                                 mProfileSendReqBtn.setEnabled(true);
                                 mCurrent_state = "friends";
-                                mProfileSendReqBtn.setText("Unfriend this Person.");
+                                mProfileSendReqBtn.setText("Unfriend this Person");
 
                                 mProfileSendSeqBtn.setVisibility(View.INVISIBLE);
                                 mProfileSendSeqBtn.setEnabled(false);

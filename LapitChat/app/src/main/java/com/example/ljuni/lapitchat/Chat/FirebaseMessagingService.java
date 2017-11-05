@@ -27,8 +27,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.icone)
-                .setContentTitle("New Friend Request")
-                .setContentText("You have received a new Friend Request");
+                .setContentTitle(notification_title)
+                .setContentText(notification_msg);
 
         Intent resultIntent = new Intent(click_action);
         resultIntent.putExtra("user_id", from_user_id);

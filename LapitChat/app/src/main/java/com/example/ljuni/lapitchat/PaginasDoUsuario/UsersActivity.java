@@ -107,7 +107,6 @@ public class UsersActivity extends AppCompatActivity {
 
             Picasso.with(ctx).load(thumb_image).placeholder(R.drawable.new_profile_image).into(userImageView);
 
-
         }
     }
 

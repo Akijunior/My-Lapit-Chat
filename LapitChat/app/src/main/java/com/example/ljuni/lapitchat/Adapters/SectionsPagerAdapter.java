@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.ljuni.lapitchat.Fragments.AmigosFragment;
+import com.example.ljuni.lapitchat.Fragments.FriendsFragment;
 import com.example.ljuni.lapitchat.Fragments.ChatFragment;
 import com.example.ljuni.lapitchat.Fragments.SolicitacoesFragment;
 
@@ -29,8 +29,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 ChatFragment chatFragment = new ChatFragment();
                 return chatFragment;
             case 2:
-                AmigosFragment amigosFragment = new AmigosFragment();
-                return amigosFragment;
+                FriendsFragment friendsFragment = new FriendsFragment();
+                return friendsFragment;
 
             default:
                 return null;

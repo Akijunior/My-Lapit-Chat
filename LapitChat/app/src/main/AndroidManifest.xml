@@ -6,14 +6,13 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".Chat.LapitChat"
         android:allowBackup="true"
         android:icon="@mipmap/icone"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/icone"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".Chat.LapitChat">
-
+        android:theme="@style/AppTheme">
         <service android:name=".Chat.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -42,10 +41,13 @@
             android:parentActivityName=".Paginas.MainActivity" />
         <activity android:name=".PaginasDoUsuario.ProfileActivity">
             <intent-filter>
-                <action android:name="com.example.ljuni.lapitchat_TARGET_NOTIFICATION"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="com.example.ljuni.lapitchat_TARGET_NOTIFICATION" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".Chat.ChatActivity"
+            android:parentActivityName=".Paginas.MainActivity"></activity>
     </application>
 
 </manifest>

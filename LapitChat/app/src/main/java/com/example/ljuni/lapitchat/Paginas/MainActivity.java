@@ -17,15 +17,19 @@ import com.example.ljuni.lapitchat.PaginasDoUsuario.UsersActivity;
 import com.example.ljuni.lapitchat.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private Toolbar mToolBar;
 
     private ViewPager mViewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    private DatabaseReference mUserRef;
 
     private TabLayout mTabLayout;
 
@@ -36,9 +40,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mAuth = FirebaseAuth.getInstance();
+
         mToolBar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Lapit Chat");
+        getSupportActionBar().setTitle("Vongola Chat");
+
+        if (mAuth.getCurrentUser() != null) {
+
+            String user_id = mAuth.getCurrentUser().getUid();
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
+        }
 
         // Tabs
         mViewPager = (ViewPager) findViewById(R.id.main_tabPager);
@@ -48,23 +60,6 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
     }
 
     @Override
@@ -72,10 +67,14 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Checar se usuário está ou não logado.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        mAuth.addAuthStateListener(mAuthListener);
 
         if(currentUser == null) {
             Ver_se_usuario_esta_logado();
+        }
+
+        else {
+
+            mUserRef.child("online").setValue("true");
         }
     }
 
@@ -86,11 +85,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStop() {
+    protected void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser != null) {
+
+            mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
+
         }
+
     }
 
     @Override
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.main_logout_btn) {
 
             FirebaseAuth.getInstance().signOut();
+            mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
             Ver_se_usuario_esta_logado();
         }
 

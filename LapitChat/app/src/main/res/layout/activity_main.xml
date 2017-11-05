@@ -17,7 +17,9 @@
             android:id="@+id/main_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/corPrimariaChat"
+            android:background="@drawable/app_bar_background"
+            app:tabSelectedTextColor="@color/cinza"
+            app:tabIndicatorColor="@color/cinza"
             app:tabTextColor="@color/cardview_light_background"></android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>

@@ -1,0 +1,26 @@
+package com.example.ljuni.lapitchat.ClassesModelo;
+
+/**
+ * Created by ljuni on 31/10/2017.
+ */
+
+public class Friends {
+
+    public String date;
+
+    public Friends() {
+
+    }
+
+    public Friends(String date) {
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+}

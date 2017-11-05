@@ -53,15 +53,17 @@
         android:id="@+id/profile_send_req_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_totalFriends"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
-        android:background="@color/corAcentuadaChat"
+        android:background="@drawable/btn_login"
         android:padding="3dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="Solicitar amizade"
         android:textColor="@color/cardview_light_background"
         android:textSize="15sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/profile_totalFriends"
-        android:layout_centerHorizontal="true" />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/profile_send_sec_btn"
@@ -70,8 +72,10 @@
         android:layout_below="@+id/profile_send_req_btn"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
-        android:background="@color/corAcentuadaChat"
+        android:background="@drawable/btn_login"
         android:padding="3dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="Desfazer Amizade"
         android:textColor="@color/cardview_light_background"
         android:textSize="15sp"

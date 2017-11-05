@@ -4,15 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/corPrimariaChat"
+    android:background="@drawable/app_bar_background"
     tools:context="com.example.ljuni.lapitchat.Paginas.StartChatActivity">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignEnd="@+id/btn_ir_a_pagina_de_login"
+        android:layout_marginBottom="14dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="30dp"
+        android:src="@drawable/anel_vongola" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_ir_a_pagina_de_login"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="88dp"
+        android:paddingTop="20dp"
         android:text="@string/bem_vindo_a_p_gina_de_chat"
         android:textColor="@color/cardview_light_background"
         android:textSize="24sp" />
@@ -21,26 +33,26 @@
         android:id="@+id/start_reg_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="92dp"
-        android:backgroundTint="@color/cardview_light_background"
-        android:padding="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/button_sec_color"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
         android:text="@string/cadastrar_agora"
-        android:textColor="@color/corPrimariaChat" />
+        android:textColor="@android:color/white" />
 
     <Button
+
         android:id="@+id/btn_ir_a_pagina_de_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_above="@+id/start_reg_btn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:background="@color/corAcentuadaChat"
-        android:padding="8dp"
-        android:text="Já tenho uma conta"
-        android:textColor="@color/cardview_light_background" />
-
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"
+        android:text="Possuo uma conta"
+        android:textColor="@android:color/white" />
 </RelativeLayout>

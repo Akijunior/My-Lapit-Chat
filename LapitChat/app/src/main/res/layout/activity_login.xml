@@ -49,7 +49,7 @@
         android:id="@+id/confirmarLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/btn_login"
         android:text="Login"
         android:textColor="@color/cardview_light_background"
         android:layout_marginTop="8dp"
